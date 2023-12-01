@@ -1,21 +1,21 @@
 (function () {
-
-    const TARGET_HOST = '2.taobao.com'
-    const TARGET_PATH = '/'
+    const TARGET_HOST = '2.taobao.com';
+    const TARGET_PATH = '/';
 
     const {
         host,
         pathname
     } = location;
 
-    const searchBox = document.createElement("div")
-    searchBox.className = "idle-search"
+    const searchBox = document.createElement("div");
+    searchBox.className = "idle-search";
     searchBox.innerHTML = '<form method="get" action="//s.2.taobao.com/list/list.htm" name="search" target="_top">' +
         '<input class="input-search" id="J_HeaderSearchQuery" name="q" type="text" value="" placeholder="搜闲鱼" />' +
         '<input type="hidden" name="search_type" value="item" autocomplete="off" />' +
         '<input type="hidden" name="app" value="shopsearch" autocomplete="off" />' +
         '<button class="btn-search" type="submit"><i class="iconfont">&#xe602;</i>' +
-        '<span class="search-img"></span></button></form>'
+        '<span class="search-img"></span></button></form>';
+
     const searchBoxStyle = `
     .idle-search {
         position: absolute;
@@ -42,7 +42,7 @@
         top: 2px;
         font-size: 13px
     }
-    
+
     .btn-search {
         display: block;
         width: 36px;
@@ -58,11 +58,11 @@
         cursor: pointer;
         outline: 0
     }
-    
+
     .btn-search .iconfont {
         font-size: 18px
     }
-    
+
     .btn-search .search-img {
         position: absolute;
         right: -65px;
@@ -80,36 +80,40 @@
         font-family: xy-iconfont;
         font-size: 14px;
         font-style: normal
-    }    
-    
+    }
+
     @font-face {
         font-family: xy-iconfont;
         src: url(//at.alicdn.com/t/font_1432608908_2844584.eot);
-        src: url(//at.alicdn.com/t/font_1432608908_2844584.eot?#iefix) format('embedded-opentype'),url(//at.alicdn.com/t/font_1432608908_2844584.woff) format('woff'),url(//at.alicdn.com/t/font_1432608908_2844584.ttf) format('truetype'),url(//at.alicdn.com/t/font_1432608908_2844584.svg#iconfont) format('svg')
+        src: url(//at.alicdn.com/t/font_1432608908_2844584.eot?#iefix) format('embedded-opentype'),
+            url(//at.alicdn.com/t/font_1432608908_2844584.woff) format('woff'),
+            url(//at.alicdn.com/t/font_1432608908_2844584.ttf) format('truetype'),
+            url(//at.alicdn.com/t/font_1432608908_2844584.svg#iconfont) format('svg')
     }
     `
 
     if (host === TARGET_HOST && pathname === TARGET_PATH) {
-        const domTarget = document.querySelector('.tab-wrap')
-        domTarget.appendChild(searchBox)
-        inserCss(searchBoxStyle)
+        const domTarget = document.querySelector('.tab-wrap');
+        domTarget.appendChild(searchBox);
+        inserCss(searchBoxStyle);
     } else {
-        const J_IdleHeader = document.getElementById("J_IdleHeader")
-        J_IdleHeader.appendChild(searchBox)
-        const keyWords = document.querySelector("#J_SearchFilterInput").value
-        const searchInput = document.getElementById("J_HeaderSearchQuery")
-        searchInput.value = keyWords
+        const J_IdleHeader = document.getElementById("J_IdleHeader");
+        J_IdleHeader.appendChild(searchBox);
+        const keyWords = document.querySelector("#J_SearchFilterInput").value;
+        const searchInput = document.getElementById("J_HeaderSearchQuery");
+        searchInput.value = keyWords;
+
         const style = `
             .download-layer {
                 display: none;
             }
         `
-        inserCss(style)
+        inserCss(style);
     }
 
     function inserCss(style) {
-        const css = document.createElement('style')
-        css.type = 'text/css'
+        const css = document.createElement('style');
+        css.type = 'text/css';
         css.appendChild(document.createTextNode(style));
         document.getElementsByTagName("head")[0].appendChild(css);
     }
